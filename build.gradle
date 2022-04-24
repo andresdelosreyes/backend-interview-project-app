@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id "io.freefair.lombok" version "6.4.2"
+	id 'info.solidsoft.pitest' version '1.7.4'
 }
 
 group = 'com.ninjaone'
@@ -24,4 +25,15 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+pitest {
+	junit5PluginVersion = '0.15'
+	targetClasses = ['com.ninjaone.backendinterviewproject.*']  //by default "${project.group}.*"
+	pitestVersion = '1.7.4' //not needed when a default PIT version should be used
+	threads = 4
+	outputFormats = ['HTML']
+	timestampedReports = false
+	jvmArgs = ['-Xmx1024m']
+	useClasspathFile = true     //useful with big
 }
