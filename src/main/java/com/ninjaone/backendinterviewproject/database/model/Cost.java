@@ -28,5 +28,9 @@ public class Cost {
     public Cost(){
     }
 
-
+    public Cost(Device device, Double value, Service service) {
+        this.device = device;
+        this.value = value;
+        this.service = service;
+    }
 }
