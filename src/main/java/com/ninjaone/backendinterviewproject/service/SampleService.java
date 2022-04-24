@@ -1,7 +1,7 @@
 package com.ninjaone.backendinterviewproject.service;
 
-import com.ninjaone.backendinterviewproject.database.SampleRepository;
-import com.ninjaone.backendinterviewproject.model.Sample;
+import com.ninjaone.backendinterviewproject.database.repository.SampleRepository;
+import com.ninjaone.backendinterviewproject.database.model.Sample;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

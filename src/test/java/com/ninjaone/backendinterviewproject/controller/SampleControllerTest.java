@@ -2,7 +2,7 @@ package com.ninjaone.backendinterviewproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ninjaone.backendinterviewproject.BackendInterviewProjectApplication;
-import com.ninjaone.backendinterviewproject.model.Sample;
+import com.ninjaone.backendinterviewproject.database.model.Sample;
 import com.ninjaone.backendinterviewproject.service.SampleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package com.ninjaone.backendinterviewproject.database;
+package com.ninjaone.backendinterviewproject.database.repository;
 
-import com.ninjaone.backendinterviewproject.model.Sample;
+import com.ninjaone.backendinterviewproject.database.model.Sample;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

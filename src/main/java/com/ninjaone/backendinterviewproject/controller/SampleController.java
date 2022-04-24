@@ -1,6 +1,6 @@
 package com.ninjaone.backendinterviewproject.controller;
 
-import com.ninjaone.backendinterviewproject.model.Sample;
+import com.ninjaone.backendinterviewproject.database.model.Sample;
 import com.ninjaone.backendinterviewproject.service.SampleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.ninjaone.backendinterviewproject.model;
+package com.ninjaone.backendinterviewproject.database.model;
 
 public enum DeviceTypeEnum {
     WINDOWS_WORKSTATION,
