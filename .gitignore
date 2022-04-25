@@ -54,6 +54,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Local database
+database/
 
 # exclude from rules
 !/gradle/wrapper/gradle-wrapper.jar
