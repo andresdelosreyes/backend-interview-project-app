@@ -21,7 +21,7 @@ class CreateDeviceRequestTest {
         Device expectedDevice = new Device(systemName, type);
         Cost deviceCost = new Cost(expectedDevice, value, null);
         Set<Cost> deviceCosts = Stream.of(deviceCost).collect(Collectors.toSet());
-        expectedDevice.setCost(deviceCosts);
+        expectedDevice.setCosts(deviceCosts);
         CreateDeviceRequest request = new CreateDeviceRequest();
         DeviceRequest deviceRequest = new DeviceRequest(systemName, type);
         request.setDevice(deviceRequest);

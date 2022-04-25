@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 public class DeviceRequest implements Serializable {
 
+    private Long id;
+
     private String systemName;
 
     private DeviceTypeEnum type;
@@ -17,6 +19,14 @@ public class DeviceRequest implements Serializable {
     public DeviceRequest(String systemName, DeviceTypeEnum type) {
         this.systemName = systemName;
         this.type = type;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSystemName() {

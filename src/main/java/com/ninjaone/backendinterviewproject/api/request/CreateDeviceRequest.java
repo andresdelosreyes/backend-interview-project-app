@@ -3,7 +3,9 @@ package com.ninjaone.backendinterviewproject.api.request;
 import com.ninjaone.backendinterviewproject.database.model.Cost;
 import com.ninjaone.backendinterviewproject.database.model.Device;
 
-public class CreateDeviceRequest {
+import java.io.Serializable;
+
+public class CreateDeviceRequest implements Serializable {
 
     private DeviceRequest device;
 
@@ -31,7 +33,7 @@ public class CreateDeviceRequest {
     public Device convertToNewDevice() {
         Device result = device.toDevice();
         Cost cost = new Cost(result, deviceCost, null);
-        result.getCost().add(cost);
+        result.getCosts().add(cost);
         return result;
     }
 }

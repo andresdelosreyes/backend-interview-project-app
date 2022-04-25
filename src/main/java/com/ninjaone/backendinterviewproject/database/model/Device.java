@@ -1,7 +1,10 @@
 package com.ninjaone.backendinterviewproject.database.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,10 +26,11 @@ public class Device {
     private String systemName;
 
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private DeviceTypeEnum type;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "device")
-    private Set<Cost> cost;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "device", cascade = CascadeType.ALL)
+    private Set<Cost> costs;
 
     @Column(name = "active")
     private Boolean active;
@@ -37,7 +41,7 @@ public class Device {
     public Device(String systemName, DeviceTypeEnum type) {
         this.systemName = systemName;
         this.type = type;
-        this.cost = new HashSet<>();
+        this.costs = new HashSet<>();
         this.active = ActiveEnum.YES.getValue();
     }
 
@@ -65,12 +69,12 @@ public class Device {
         this.type = type;
     }
 
-    public Set<Cost> getCost() {
-        return cost;
+    public Set<Cost> getCosts() {
+        return costs;
     }
 
-    public void setCost(Set<Cost> cost) {
-        this.cost = cost;
+    public void setCosts(Set<Cost> costs) {
+        this.costs = costs;
     }
 
     public Boolean getActive() {
@@ -80,4 +84,6 @@ public class Device {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
+
 }
