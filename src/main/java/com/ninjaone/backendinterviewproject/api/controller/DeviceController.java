@@ -25,8 +25,8 @@ public class DeviceController {
     DeviceService deviceService;
 
     @GetMapping()
-    private Device getDeviceById(@RequestParam Long deviceId){
-        return deviceService.getById(deviceId);
+    private ResponseEntity<Device> getDeviceById(@RequestParam Long deviceId){
+        return new ResponseEntity<>(deviceService.getById(deviceId), HttpStatus.OK);
     }
 
     @PostMapping()
