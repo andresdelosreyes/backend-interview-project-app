@@ -124,6 +124,8 @@ class DeviceServiceTest {
         void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullCost() {
             Double nullCost = null;
             DeviceRequest deviceRequest = new DeviceRequest();
+            deviceRequest.setType(DeviceTypeEnum.WINDOWS_SERVER);
+            deviceRequest.setSystemName("Test System Name");
             CreateDeviceRequest createDeviceRequest = new CreateDeviceRequest();
             createDeviceRequest.setDevice(deviceRequest);
             createDeviceRequest.setDeviceCost(nullCost);
@@ -213,7 +215,7 @@ class DeviceServiceTest {
             CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
             updateDeviceRequest.setDevice(deviceRequest);
             updateDeviceRequest.setDeviceCost(nullCost);
-            String expectedMessage = "Device cannot have a null cost";
+            String expectedMessage = "Device system name is null";
 
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
                 deviceService.update(updateDeviceRequest);
@@ -227,6 +229,8 @@ class DeviceServiceTest {
             Double cost = Double.valueOf("123");
             Long deviceId = null;
             DeviceRequest deviceRequest = new DeviceRequest();
+            deviceRequest.setSystemName("System Name");
+            deviceRequest.setType(DeviceTypeEnum.MAC);
             deviceRequest.setId(deviceId);
             CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
             updateDeviceRequest.setDevice(deviceRequest);

@@ -36,4 +36,19 @@ public class CreateDeviceRequest implements Serializable {
         result.getCosts().add(cost);
         return result;
     }
+
+    public void validateForCreate() {
+        if (device == null) {
+            throw new IllegalArgumentException("Device is null");
+        }
+        device.validateForCreate();
+        if (deviceCost == null) {
+            throw new IllegalArgumentException("Device cannot have a null cost");
+        }
+    }
+
+    public void validateForUpdate() {
+        validateForCreate();
+        device.validateForUpdate();
+    }
 }

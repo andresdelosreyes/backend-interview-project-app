@@ -52,4 +52,19 @@ public class DeviceRequest implements Serializable {
     public static DeviceRequest fromDevice(Device device) {
         return new DeviceRequest(device.getSystemName(), device.getType());
     }
+
+    public void validateForCreate() {
+        if (systemName == null) {
+            throw new IllegalArgumentException("Device system name is null");
+        }
+        if (type == null) {
+            throw new IllegalArgumentException("Device type is null");
+        }
+    }
+
+    public void validateForUpdate() {
+        if (id == null) {
+            throw new IllegalArgumentException("Device id is null");
+        }
+    }
 }
