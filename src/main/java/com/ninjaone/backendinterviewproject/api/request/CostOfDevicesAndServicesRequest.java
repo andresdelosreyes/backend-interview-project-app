@@ -37,7 +37,7 @@ public class CostOfDevicesAndServicesRequest {
         if (devices == null) {
             throw new IllegalArgumentException("List of devices is null");
         }
-        if (devices.isEmpty()){
+        if (devices.isEmpty()) {
             throw new IllegalArgumentException("List of devices is empty");
         }
         devices.forEach(device -> device.validate());

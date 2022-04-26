@@ -1,6 +1,5 @@
 package com.ninjaone.backendinterviewproject.api.response;
 
-import com.ninjaone.backendinterviewproject.database.model.Cost;
 import com.ninjaone.backendinterviewproject.database.model.Device;
 import com.ninjaone.backendinterviewproject.database.model.DeviceTypeEnum;
 

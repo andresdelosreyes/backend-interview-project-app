@@ -3,6 +3,7 @@ package com.ninjaone.backendinterviewproject.api.request;
 import com.ninjaone.backendinterviewproject.database.model.Device;
 import com.ninjaone.backendinterviewproject.database.model.DeviceTypeEnum;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 

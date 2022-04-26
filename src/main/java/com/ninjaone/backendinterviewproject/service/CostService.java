@@ -9,7 +9,6 @@ import com.ninjaone.backendinterviewproject.database.repository.CostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,7 +34,7 @@ public class CostService {
 
 
         if (!request.getServiceIds().isEmpty()) {
-            for (Long serviceId: request.getServiceIds()) {
+            for (Long serviceId : request.getServiceIds()) {
 
                 List<Long> deviceIds = request.getDevices().stream().map(device -> device.getDeviceId()).collect(Collectors.toList());
                 List<Cost> costsOfDevicesForService = costRepository.findByDevice_idInAndService_id(deviceIds, serviceId);
@@ -51,9 +50,10 @@ public class CostService {
         Double totalCost = 0.0;
         Map<Long, Integer> numberOfDevices = costOfDeviceRequests.stream().collect(Collectors.toMap(CostOfDeviceRequest::getDeviceId, CostOfDeviceRequest::getNumberOfDevices));
         if (costs != null) {
-            for (Cost cost: costs ) {
+            for (Cost cost : costs) {
                 totalCost = totalCost + (numberOfDevices.get(cost.getDevice().getId()) * cost.getValue());
-            };
+            }
+            ;
         }
         return new CostDetail(description, totalCost);
     }

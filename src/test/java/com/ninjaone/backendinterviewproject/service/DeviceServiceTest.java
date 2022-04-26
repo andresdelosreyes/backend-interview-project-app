@@ -15,22 +15,21 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -93,7 +92,8 @@ class DeviceServiceTest {
 
     @Nested
     class Create {
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestIsNull() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestIsNull() {
             CreateDeviceRequest nullCreateDeviceRequest = null;
             String expectedMessage = "Request is null";
 
@@ -104,7 +104,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullDeviceRequest() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullDeviceRequest() {
             DeviceRequest nullDevice = null;
             Double cost = Double.valueOf("123");
             CreateDeviceRequest createDeviceRequest = new CreateDeviceRequest();
@@ -119,7 +120,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullCost() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullCost() {
             Double nullCost = null;
             DeviceRequest deviceRequest = new DeviceRequest();
             CreateDeviceRequest createDeviceRequest = new CreateDeviceRequest();
@@ -134,7 +136,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenDeviceAlreadyExists() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenDeviceAlreadyExists() {
             String existingSystemName = "Test System Name";
             DeviceTypeEnum existingType = DeviceTypeEnum.WINDOWS_SERVER;
             Double cost = Double.valueOf("123");
@@ -153,7 +156,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldReturnTheResultOfTheSaveMethodWhenGivenAValidCreateRequest() {
+        @Test
+        void shouldReturnTheResultOfTheSaveMethodWhenGivenAValidCreateRequest() {
             String systemName = "Test System Name";
             DeviceTypeEnum type = DeviceTypeEnum.WINDOWS_SERVER;
             Double cost = Double.valueOf("123");
@@ -174,7 +178,8 @@ class DeviceServiceTest {
 
     @Nested
     class Update {
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestIsNull() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestIsNull() {
             CreateDeviceRequest nullUpdateDeviceRequest = null;
             String expectedMessage = "Request is null";
 
@@ -185,7 +190,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullDeviceRequest() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullDeviceRequest() {
             DeviceRequest nullDevice = null;
             Double cost = Double.valueOf("123");
             CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
@@ -200,7 +206,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullCost() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullCost() {
             Double nullCost = null;
             DeviceRequest deviceRequest = new DeviceRequest();
             CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
@@ -215,7 +222,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullId() {
+        @Test
+        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullId() {
             Double cost = Double.valueOf("123");
             Long deviceId = null;
             DeviceRequest deviceRequest = new DeviceRequest();
@@ -232,7 +240,8 @@ class DeviceServiceTest {
             assertEquals(exception.getMessage(), expectedMessage);
         }
 
-        @Test void shouldReturnTheUpdatedDeviceWhenGivenDeviceExists() {
+        @Test
+        void shouldReturnTheUpdatedDeviceWhenGivenDeviceExists() {
             Long deviceId = 1L;
             String existingSystemName = "Test System Name";
             String newSystemName = "Updated System Name";

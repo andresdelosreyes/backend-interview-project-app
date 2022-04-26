@@ -1,9 +1,6 @@
 package com.ninjaone.backendinterviewproject.api.response;
 
-import com.ninjaone.backendinterviewproject.database.model.Cost;
-
 import java.io.Serializable;
-import java.util.Set;
 
 public class CostDetail implements Serializable {
 
