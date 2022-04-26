@@ -92,51 +92,6 @@ class DeviceServiceTest {
 
     @Nested
     class Create {
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestIsNull() {
-            CreateDeviceRequest nullCreateDeviceRequest = null;
-            String expectedMessage = "Request is null";
-
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.create(nullCreateDeviceRequest);
-            });
-
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
-
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullDeviceRequest() {
-            DeviceRequest nullDevice = null;
-            Double cost = Double.valueOf("123");
-            CreateDeviceRequest createDeviceRequest = new CreateDeviceRequest();
-            createDeviceRequest.setDevice(nullDevice);
-            createDeviceRequest.setDeviceCost(cost);
-            String expectedMessage = "Device is null";
-
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.create(createDeviceRequest);
-            });
-
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
-
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenCreateDeviceRequestHasNullCost() {
-            Double nullCost = null;
-            DeviceRequest deviceRequest = new DeviceRequest();
-            deviceRequest.setType(DeviceTypeEnum.WINDOWS_SERVER);
-            deviceRequest.setSystemName("Test System Name");
-            CreateDeviceRequest createDeviceRequest = new CreateDeviceRequest();
-            createDeviceRequest.setDevice(deviceRequest);
-            createDeviceRequest.setDeviceCost(nullCost);
-            String expectedMessage = "Device cannot have a null cost";
-
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.create(createDeviceRequest);
-            });
-
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
 
         @Test
         void shouldThrowAnIllegalArgumentExceptionWhenDeviceAlreadyExists() {
@@ -180,69 +135,8 @@ class DeviceServiceTest {
 
     @Nested
     class Update {
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestIsNull() {
-            CreateDeviceRequest nullUpdateDeviceRequest = null;
-            String expectedMessage = "Request is null";
 
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.update(nullUpdateDeviceRequest);
-            });
 
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
-
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullDeviceRequest() {
-            DeviceRequest nullDevice = null;
-            Double cost = Double.valueOf("123");
-            CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
-            updateDeviceRequest.setDevice(nullDevice);
-            updateDeviceRequest.setDeviceCost(cost);
-            String expectedMessage = "Device is null";
-
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.update(updateDeviceRequest);
-            });
-
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
-
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullCost() {
-            Double nullCost = null;
-            DeviceRequest deviceRequest = new DeviceRequest();
-            CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
-            updateDeviceRequest.setDevice(deviceRequest);
-            updateDeviceRequest.setDeviceCost(nullCost);
-            String expectedMessage = "Device system name is null";
-
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.update(updateDeviceRequest);
-            });
-
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
-
-        @Test
-        void shouldThrowAnIllegalArgumentExceptionWhenUpdateDeviceRequestHasNullId() {
-            Double cost = Double.valueOf("123");
-            Long deviceId = null;
-            DeviceRequest deviceRequest = new DeviceRequest();
-            deviceRequest.setSystemName("System Name");
-            deviceRequest.setType(DeviceTypeEnum.MAC);
-            deviceRequest.setId(deviceId);
-            CreateDeviceRequest updateDeviceRequest = new CreateDeviceRequest();
-            updateDeviceRequest.setDevice(deviceRequest);
-            updateDeviceRequest.setDeviceCost(cost);
-            String expectedMessage = "Device id is null";
-
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-                deviceService.update(updateDeviceRequest);
-            });
-
-            assertEquals(exception.getMessage(), expectedMessage);
-        }
 
         @Test
         void shouldReturnTheUpdatedDeviceWhenGivenDeviceExists() {

@@ -47,10 +47,7 @@ public class DeviceService {
     }
 
     private void validateCreateDeviceRequest(CreateDeviceRequest createDeviceRequest) {
-        if (createDeviceRequest == null) {
-            throw new IllegalArgumentException("Request is null");
-        }
-        createDeviceRequest.validateForCreate();
+        CreateDeviceRequest.validateForCreate(createDeviceRequest);
         List<Device> existingDevices = getAll().stream().filter(device -> createDeviceRequest.getDevice().getSystemName().equals(device.getSystemName()) && createDeviceRequest.getDevice().getType().equals(device.getType())).collect(Collectors.toList());
         if (!existingDevices.isEmpty()) {
             throw new IllegalArgumentException("Device already exists");
@@ -58,10 +55,7 @@ public class DeviceService {
     }
 
     private void validateUpdateDeviceRequest(CreateDeviceRequest updateDeviceRequest) {
-        if (updateDeviceRequest == null) {
-            throw new IllegalArgumentException("Request is null");
-        }
-        updateDeviceRequest.validateForUpdate();
+        CreateDeviceRequest.validateForUpdate(updateDeviceRequest);
     }
 
     private Device findExistingDeviceAndUpdate(CreateDeviceRequest updateDeviceRequest) {
