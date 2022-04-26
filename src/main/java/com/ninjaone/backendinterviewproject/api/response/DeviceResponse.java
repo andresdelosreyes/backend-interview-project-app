@@ -5,7 +5,7 @@ import com.ninjaone.backendinterviewproject.database.model.Device;
 import com.ninjaone.backendinterviewproject.database.model.DeviceTypeEnum;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class DeviceResponse implements Serializable {
@@ -15,12 +15,12 @@ public class DeviceResponse implements Serializable {
 
     private DeviceTypeEnum type;
 
-    private Set<CostResponse> costs;
+    private List<CostResponse> costs;
 
     public DeviceResponse() {
     }
 
-    public DeviceResponse(Long id, String systemName, DeviceTypeEnum type, Set<CostResponse> costs) {
+    public DeviceResponse(Long id, String systemName, DeviceTypeEnum type, List<CostResponse> costs) {
         this.id = id;
         this.systemName = systemName;
         this.type = type;
@@ -51,11 +51,11 @@ public class DeviceResponse implements Serializable {
         this.type = type;
     }
 
-    public Set<CostResponse> getCosts() {
+    public List<CostResponse> getCosts() {
         return costs;
     }
 
-    public void setCosts(Set<CostResponse> costs) {
+    public void setCosts(List<CostResponse> costs) {
         this.costs = costs;
     }
 
@@ -64,7 +64,7 @@ public class DeviceResponse implements Serializable {
                 device.getId(),
                 device.getSystemName(),
                 device.getType(),
-                device.getCosts().stream().map(cost -> CostResponse.fromCost(cost)).collect(Collectors.toSet())
+                device.getCosts().stream().map(cost -> CostResponse.fromCost(cost)).collect(Collectors.toList())
         );
     }
 }

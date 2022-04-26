@@ -5,7 +5,7 @@ import com.ninjaone.backendinterviewproject.database.model.Device;
 import com.ninjaone.backendinterviewproject.database.model.DeviceTypeEnum;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,7 +20,7 @@ class CreateDeviceRequestTest {
         Double value = Double.valueOf("123");
         Device expectedDevice = new Device(systemName, type);
         Cost deviceCost = new Cost(expectedDevice, value, null);
-        Set<Cost> deviceCosts = Stream.of(deviceCost).collect(Collectors.toSet());
+        List<Cost> deviceCosts = Stream.of(deviceCost).collect(Collectors.toList());
         expectedDevice.setCosts(deviceCosts);
         CreateDeviceRequest request = new CreateDeviceRequest();
         DeviceRequest deviceRequest = new DeviceRequest(systemName, type);

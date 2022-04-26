@@ -23,9 +23,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,7 +46,7 @@ class DeviceServiceTest {
     class GetAll {
         @Test
         void shouldCallDeviceRepositoryFindByActive() {
-            when(deviceRepository.findByActive(ActiveEnum.YES.getValue())).thenReturn(new HashSet<>());
+            when(deviceRepository.findByActive(ActiveEnum.YES.getValue())).thenReturn(new ArrayList<>());
 
             deviceService.getAll();
 
@@ -143,7 +144,7 @@ class DeviceServiceTest {
             request.setDevice(exisingDeviceRequest);
             request.setDeviceCost(cost);
             String expectedMessage = "Device already exists";
-            when(deviceRepository.findByActive(ActiveEnum.YES.getValue())).thenReturn(Stream.of(existingDevice).collect(Collectors.toSet()));
+            when(deviceRepository.findByActive(ActiveEnum.YES.getValue())).thenReturn(Stream.of(existingDevice).collect(Collectors.toList()));
 
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
                 deviceService.create(request);
@@ -162,7 +163,7 @@ class DeviceServiceTest {
             DeviceRequest deviceRequest = new DeviceRequest(systemName, type);
             request.setDevice(deviceRequest);
             request.setDeviceCost(cost);
-            when(deviceRepository.findByActive(ActiveEnum.YES.getValue())).thenReturn(Stream.of(existingDevice).collect(Collectors.toSet()));
+            when(deviceRepository.findByActive(ActiveEnum.YES.getValue())).thenReturn(Stream.of(existingDevice).collect(Collectors.toList()));
             when(deviceRepository.save(any())).thenReturn(expectedDevice);
 
             Device actualResult = deviceService.create(request);
@@ -244,8 +245,8 @@ class DeviceServiceTest {
             Cost previousCostOfDevice = new Cost(existingDevice, previousCostOfDeviceValue, null);
             Cost costOfDeviceInAService = new Cost(existingDevice, costOfDeviceInAServiceValue, new Service());
             Cost newCostOfDevice = new Cost(existingDevice, newCostOfDeviceValue, null);
-            Set<Cost> existingCosts = Stream.of(previousCostOfDevice, costOfDeviceInAService).collect(Collectors.toSet());
-            Set<Cost> expectedDeviceCosts = Stream.of(newCostOfDevice, costOfDeviceInAService).collect(Collectors.toSet());
+            List<Cost> existingCosts = Stream.of(previousCostOfDevice, costOfDeviceInAService).collect(Collectors.toList());
+            List<Cost> expectedDeviceCosts = Stream.of(newCostOfDevice, costOfDeviceInAService).collect(Collectors.toList());
             existingDevice.setCosts(existingCosts);
             existingDevice.setId(deviceId);
             Device expectedDevice = new Device(newSystemName, newType);

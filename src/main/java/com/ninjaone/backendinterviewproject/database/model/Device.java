@@ -11,8 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "Device")
@@ -30,7 +31,7 @@ public class Device {
     private DeviceTypeEnum type;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "device", cascade = CascadeType.ALL)
-    private Set<Cost> costs;
+    private List<Cost> costs;
 
     @Column(name = "active")
     private Boolean active;
@@ -41,7 +42,7 @@ public class Device {
     public Device(String systemName, DeviceTypeEnum type) {
         this.systemName = systemName;
         this.type = type;
-        this.costs = new HashSet<>();
+        this.costs = new ArrayList<>();
         this.active = ActiveEnum.YES.getValue();
     }
 
@@ -69,11 +70,11 @@ public class Device {
         this.type = type;
     }
 
-    public Set<Cost> getCosts() {
+    public List<Cost> getCosts() {
         return costs;
     }
 
-    public void setCosts(Set<Cost> costs) {
+    public void setCosts(List<Cost> costs) {
         this.costs = costs;
     }
 

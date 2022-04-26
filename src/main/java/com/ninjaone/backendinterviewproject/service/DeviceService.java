@@ -9,6 +9,7 @@ import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,8 +20,8 @@ public class DeviceService {
     @Autowired
     private DeviceRepository deviceRepository;
 
-    public Set<Device> getAll() {
-        Set<Device> devices = deviceRepository.findByActive(ActiveEnum.YES.getValue());
+    public List<Device> getAll() {
+        List<Device> devices = deviceRepository.findByActive(ActiveEnum.YES.getValue());
         return devices;
     }
 
@@ -56,7 +57,7 @@ public class DeviceService {
         if (createDeviceRequest.getDeviceCost() == null) {
             throw new IllegalArgumentException("Device cannot have a null cost");
         }
-        Set<Device> existingDevices = getAll().stream().filter(device -> createDeviceRequest.getDevice().getSystemName().equals(device.getSystemName()) && createDeviceRequest.getDevice().getType().equals(device.getType())).collect(Collectors.toSet());
+        List<Device> existingDevices = getAll().stream().filter(device -> createDeviceRequest.getDevice().getSystemName().equals(device.getSystemName()) && createDeviceRequest.getDevice().getType().equals(device.getType())).collect(Collectors.toList());
         if (!existingDevices.isEmpty()) {
             throw new IllegalArgumentException("Device already exists");
         }
