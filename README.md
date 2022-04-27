@@ -1,16 +1,17 @@
-# NinjaOne Backend Interview Project
+# Andres de los Reyes - NinjaOne Backend Interview Project
 
-The project is configured to use an in-memory H2 database that is volatile. If you wish to make it maintain data on application shut down, you can change the spring.database.jdbc-url to point at a file like `jdbc:h2:file:/{your file path here}`
+The project is configured to use an in-memory H2 database that can be volatile. It is storing the ./database directory
 
 ## Starting the Application
 
 Run the `BackendInterviewProjectApplication` class
 
-Go to:
-* http://localhost:8080/sample/1
-* http://localhost:8080/sample/2
 
-You should see results for both of these. The application is working and connected to the H2 database. 
+## Accesing the documentation
+Go to:
+* http://localhost:8080/swagger-ui/#/
+
+You will see the swagger endpoint exposing all the controllers and its methods
 
 ## H2 Console 
 
@@ -22,21 +23,36 @@ http://localhost:8080/h2-console
 Enter the information for the url, username, and password in the application.yml:
 
 ```yml
-url: jdbc:h2:mem:localdb
+url: jdbc:h2:file:./database/localdb
 username: sa 
 password: password
 ```
 
 You should be able to see a db console now that has the Sample Repository in it.
 
-Type:
+## Notes
+The application will execute the data.sql script located in src/main/resources every time it starts, this file contains the basic set of data to run the cost endpoint to get the example result of the project, to do so you will need to hit this endpoint:
 
-```sql
-SELECT * FROM SAMPLE;
-````
-
-Click `Run`, you should see two rows, for ids `1` and `2`
-
-### Suggestions
-
-Feel free to remove or repurpose the existing Sample Repository, Entity, Controller, and Service. 
+* URL: http://localhost:8080/cost (POST)
+* Method: Post
+* Header: Content-Type: application/json
+* Payload: 
+```json
+{
+    "devices": [
+        {
+            "deviceId": 1,
+            "numberOfDevices": 2
+        },
+        {
+            "deviceId": 3,
+            "numberOfDevices": 3
+        }
+    ],
+    "serviceIds": [
+        1,
+        2,
+        4
+    ]
+}
+```
